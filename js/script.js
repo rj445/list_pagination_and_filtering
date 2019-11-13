@@ -1,13 +1,17 @@
 const student_list = document.querySelector(".student-list").children;
 
+// List of cloned students 
 const student_list_to_filter = [];
 
+// Pushing all the sutdents which are in the DOM to the cloned students array
 for(let studentIndex = 0; studentIndex < student_list.length; studentIndex++) {
    student_list_to_filter.push(student_list[studentIndex]);
 } 
 
+// Number of students per page
 const students_per_page = 10;
 
+// Update student list to filtered student list
 function changeStudentListTo(student_list) {
    const student_list_container = document.querySelector(".student-list");
    student_list_container.innerHTML = "";
@@ -16,6 +20,7 @@ function changeStudentListTo(student_list) {
    } 
 }
 
+// Update page with count of students same as pageNumber in each page 
 function showPage(student_list, pageNumber) {
    let start_index = pageNumber * students_per_page - students_per_page;
    let end_index = pageNumber * students_per_page - 1;
@@ -30,6 +35,7 @@ function showPage(student_list, pageNumber) {
    } 
 }
 
+// According to count of student_list add pages links counting from 1 to n
 function appendPageLinks(student_list) {
    const mainPage = document.querySelector(".page");
 
@@ -67,6 +73,7 @@ function appendPageLinks(student_list) {
    
 }
 
+// Append search box for filter students by name
 function appendSearchBox() {
    const pageHeaderElement = document.querySelector(".page-header");
    const searchBoxContainer = document.createElement("div");
@@ -92,22 +99,20 @@ function appendSearchBox() {
    pageHeaderElement.appendChild(searchBoxContainer);
 }
 
-
+// Filter student list by student name
 function filterStudentList(student_list, student_name) {
-   
    let filtered_list = [];
    for(let student_index=0; student_index < student_list.length; student_index++) {
       if (student_list[student_index].querySelector("h3").innerHTML.includes(student_name)) {
          filtered_list.push(student_list[student_index]);
       }
    }
-
    changeStudentListTo(filtered_list);
-
    appendPageLinks(filtered_list);
-
    showPage(filtered_list, 1);
 }
 
+// Append Search Box for filter
 appendSearchBox();
+// Filter student list
 filterStudentList(student_list_to_filter, '')
