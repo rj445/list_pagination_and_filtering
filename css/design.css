@@ -117,3 +117,10 @@ body{
       background-color: #4ba6c3;
       color: #fff;
     }
+
+
+.noStudentFound {
+  text-align: center;
+  margin-top: 10%;
+  display: none;
+}

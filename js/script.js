@@ -88,7 +88,7 @@ function appendSearchBox() {
    });
 
    const searchButton = document.createElement("button");
-   searchButton.textContent = "search";
+   searchButton.textContent = "Search";
 
    searchButton.addEventListener('click', function() {
       filterStudentList(student_list_to_filter, searchField.value);
@@ -106,6 +106,11 @@ function filterStudentList(student_list, student_name) {
       if (student_list[student_index].querySelector("h3").innerHTML.includes(student_name)) {
          filtered_list.push(student_list[student_index]);
       }
+   }
+   if (filtered_list.length > 0) {
+      document.querySelector(".noStudentFound").style.display = "none";
+   } else {
+      document.querySelector(".noStudentFound").style.display = "inherit";
    }
    changeStudentListTo(filtered_list);
    appendPageLinks(filtered_list);
